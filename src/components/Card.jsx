@@ -2,15 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Card = (props) => {
-    const [pokemon, setPokemon] = useState({})
-    useEffect(() => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${props.index}`).then( response => {
-            setPokemon(response.data)
-            console.log(response)
-        })
-    }, [])
+    
+    const pokemon = props.pokemon
 
-    console.log(pokemon)
     if (pokemon.name) {
         return (
             <div className="pokemon">
