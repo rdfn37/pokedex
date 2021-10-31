@@ -28,6 +28,7 @@ function App() {
     <div className="App">
       <h1>Pokedex</h1>
       <input type="text" placeholder="Pesquisar..." onChange={e => searchPokemon(e.target.value)} />
+      
       <div className="poke-container" id="poke-container">
         <Card pokemon={pokemon} />
       </div>
