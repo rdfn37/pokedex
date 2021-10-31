@@ -24,17 +24,19 @@ const Card = (props) => {
                     <h3 className="name">
                         {pokemon.name}
                     </h3>
+                    <ul>
                     {pokemon.types.map( data => (
-                        <small className="type">
+                        <li className="type">
                             Type: <span>{data.type.name}</span> 
-                        </small>
+                        </li>
                     ))}
+                    </ul>
                     
                 </div>
             </div>
         )
     } else {
-        return (<div>aaaaaaaaaaaaaa</div>)
+        return (<div></div>)
     }
 }
 
