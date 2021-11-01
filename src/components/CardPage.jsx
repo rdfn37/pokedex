@@ -7,18 +7,22 @@ import axios from "axios";
 const CardPage = () => {
     const [pokemon, setPokemon] = useState({})
 
-    const [pokemonName, setPokemonName] = useState('')
+    const [pokemonName, setPokemonName] = useState(window.location.pathname.substring(1))
+
 
     const getPokemon = () => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-            .then(e => {
-                setPokemon(e.data)
-            })
+        if (pokemonName) {
+            axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                .then(e => {
+                    setPokemon(e.data)
+                })
+        }
     }
+    
 
-    const getPokemonName = () => {
-        setPokemonName(window.location.pathname.substring(1))
-    }
+    useEffect( () => {
+        getPokemon()
+    }, [])
 
 
     return (
@@ -26,7 +30,7 @@ const CardPage = () => {
             <div>
                 <h1>Teste {pokemonName}</h1>
                 <div>
-                    {/* <img src={pokemon.sprites.front_default} alt={pokemonName} /> */}
+                    { <img src={pokemon.sprites?.front_default} alt={pokemonName} /> }
                 </div>
             </div>
         </React.Fragment>
