@@ -4,28 +4,36 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  padding-top: 10px;
+  height: 100%;
   background: #efefbb;
   background: linear-gradient(to right, #d4d3dd, #efefbb);
   font-family: 'Lato', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin: 0;
 }
 
 h1 {
   letter-spacing: 3px;
+  text-align: center;
 }
 
 .poke-container {
+  padding-top: 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: space-between;
   justify-content: center;
   margin: 0 auto;
   max-width: 1200px;
+  height: fit-content;
 }
 
 .pokemon {
@@ -52,6 +60,7 @@ h1 {
 
 .pokemon .info {
   margin-top: 20px;
+  text-decoration: none;
 }
 
 .pokemon .info .number {
@@ -64,4 +73,65 @@ h1 {
 .pokemon .info .name {
   margin: 15px 0 7px;
   letter-spacing: 1px;
+}
+
+#link {
+  text-decoration: none;
+  color: black;
+}
+
+.bug {
+  background-color: greenyellow;
+}
+
+.dragon {
+  background-color: navy;
+}
+
+.electric {
+  background-color: yellow;
+}
+
+.fighting {
+  background-color: darkred;
+}
+
+.fire {
+  background-color: red;
+}
+
+.flying {
+  background-color: deepskyblue;
+}
+
+.ghost {
+  background-color: darkslateblue;
+}
+
+.grass {
+  background-color: green;
+}
+
+.ground {
+  background-color: brown;
+}
+
+.ice {
+  background-color: cyan;
+}
+
+.poison {
+  background-color: purple;
+}
+
+.psychic {
+  background-color: palevioletred;
+}
+
+.water {
+  background-color: lightseagreen;
+}
+
+.rock {
+  background-color: brown;
 }

@@ -6,6 +6,7 @@
     'pokemonPageImg pokemonPageInfo'
     'pokemonPageStats pokemonPageStats';
     margin-left: 0;
+    height: fit-content;
 }
 
 .pokemonPageImg {

@@ -27,7 +27,6 @@ const CardPage = () => {
 
     //
     const pokemonAbilities = pokemon.abilities
-    pokemonAbilities ? console.log(pokemonAbilities) : console.log('vazio')
     //
 
 

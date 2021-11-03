@@ -13,14 +13,11 @@ const IndexPage = () => {
     }
   
     const searchPokemon = name => {
-      console.log(pokemonName)
       axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
         .then(e => {
-          console.log(e)
           setPokemon(e.data)
         })
         .catch(e => {
-          console.log(e)
           alert('pokemon não existente')
         })
     }
