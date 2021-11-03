@@ -25,9 +25,38 @@ const CardPage = () => {
         getPokemon()
     }, [])
 
-    //
-    const pokemonAbilities = pokemon.abilities
-    //
+    let typeColor = 'o'
+
+    
+    if (pokemon.types?.[0]?.type?.name == 'fire') {
+        typeColor = 'fire'
+    } else if(pokemon.types?.[0]?.type?.name == 'bug') {
+        typeColor = 'bug'
+    } else if(pokemon.types?.[0]?.type?.name == 'dragon') {
+        typeColor = 'dragon'
+    } else if(pokemon.types?.[0]?.type?.name == 'electric') {
+        typeColor = 'electric'
+    } else if(pokemon.types?.[0]?.type?.name == 'fighting') {
+        typeColor = 'fighting'
+    } else if(pokemon.types?.[0]?.type?.name == 'flying') {
+        typeColor = 'flying'
+    } else if(pokemon.types?.[0]?.type?.name == 'ghost') {
+        typeColor = 'ghost'
+    } else if(pokemon.types?.[0]?.type?.name == 'grass') {
+        typeColor = 'grass'
+    } else if(pokemon.types?.[0]?.type?.name == 'ground') {
+        typeColor = 'ground'
+    } else if(pokemon.types?.[0]?.type?.name == 'rock') {
+        typeColor = 'rock'
+    } else if(pokemon.types?.[0]?.type?.name == 'ice') {
+        typeColor = 'ice'
+    } else if(pokemon.types?.[0]?.type?.name == 'poison') {
+        typeColor = 'poison'
+    } else if(pokemon.types?.[0]?.type?.name == 'psychic') {
+        typeColor = 'psychic'
+    } else if(pokemon.types?.[0]?.type?.name == 'water') {
+        typeColor = 'water'
+    }
 
 
     return (
@@ -36,7 +65,7 @@ const CardPage = () => {
                 <h1>{pokemonName[0].toUpperCase() + pokemonName.substring(1)}</h1>
             </header>
 
-            <div className='pokemonPageMain my-5'>
+            <div className={`pokemonPageMain my-5 rounded p-1 ${typeColor}`}>
 
                 <div className={`pokemonPageImg ${pokemonName}-img mx-5`}>
                     <img src={pokemon.sprites?.front_default} alt={pokemonName} />
@@ -64,7 +93,7 @@ const CardPage = () => {
                         </ul>
                     </div>
                 </div>
-                <hr />
+                
 
                 <div className={`pokemonPageStats ${pokemonName}-stats d-block`}>
                     <table className='bg-dark rounded table table-danger'>
@@ -105,7 +134,6 @@ const CardPage = () => {
                         </tr>
                     </table>
                 </div>
-                <hr />
             </div>
         </React.Fragment>
     )

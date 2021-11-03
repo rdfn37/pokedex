@@ -1,12 +1,14 @@
 .pokemonPageMain  {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 70% 30%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-areas: 
-    'pokemonPageImg pokemonPageInfo'
-    'pokemonPageStats pokemonPageStats';
+    'pokemonPageImg pokemonPageInfo evolution'
+    'pokemonPageStats pokemonPageStats evolution';
     margin-left: 0;
-    height: fit-content;
+    width: fit-content;
+    margin-left: 20px;
+    align-content: center;
 }
 
 .pokemonPageImg {
@@ -18,5 +20,66 @@
 }
 
 .pokemonPageStats {
+    padding-top: 10px;
     grid-area: pokemonPageStats;
 }
+
+.App {
+    height: fit-content;
+}
+
+.bug {
+    background-color: greenyellow;
+  }
+  
+  .dragon {
+    background-color: navy;
+  }
+  
+  .electric {
+    background-color: yellow;
+  }
+  
+  .fighting {
+    background-color: darkred;
+  }
+  
+  .fire {
+    background-color: red;
+  }
+  
+  .flying {
+    background-color: deepskyblue;
+  }
+  
+  .ghost {
+    background-color: darkslateblue;
+  }
+  
+  .grass {
+    background-color: green;
+  }
+  
+  .ground {
+    background-color: brown;
+  }
+  
+  .ice {
+    background-color: cyan;
+  }
+  
+  .poison {
+    background-color: purple;
+  }
+  
+  .psychic {
+    background-color: palevioletred;
+  }
+  
+  .water {
+    background-color: lightseagreen;
+  }
+  
+  .rock {
+    background-color: brown;
+  }
