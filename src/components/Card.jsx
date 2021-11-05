@@ -39,12 +39,12 @@ const Card = (props) => {
     }
 
     const refreshPage = () => {
-        window.location.reload()
+        window.location.replace(pokemon.name)
     }
 
     if (pokemon.name) {
         return (
-            <Link id='link' to={pokemon.name} key={pokemon.id}>
+            <Link onClick={refreshPage} id='link' to={pokemon.name} key={pokemon.id}>
                 <div className={`pokemon ${typeColor}`}>
                     <div className="image-container">
                         <img src={pokemon.sprites.front_default} alt={pokemon.name} />

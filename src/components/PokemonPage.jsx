@@ -5,7 +5,7 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/PokemonPage.css'
 
-const CardPage = () => {
+const CardPage = (props) => {
     const [pokemon, setPokemon] = useState({})
 
     const [pokemonName, setPokemonName] = useState(window.location.pathname.substring(1))
@@ -64,7 +64,7 @@ const CardPage = () => {
 
     console.log(nextPokemonEvolutionName)
 
-    
+
     console.log(pokemonEvolutionChain?.chain?.evolves_to?.[0].species?.name)
 
 
@@ -98,6 +98,7 @@ const CardPage = () => {
     } else if (pokemon.types?.[0]?.type?.name == 'water') {
         typeColor = 'water'
     }
+
 
     return (
         <React.Fragment>
@@ -174,22 +175,9 @@ const CardPage = () => {
                         </tr>
                     </table>
                 </div>
-                <div className="pokemonPageEvolutionChain">
-                    {/* <h1>Evo. 1--------------</h1>
-                    <h1>Evo. 2</h1>
-                    <h1>Evo. 3</h1>
-                    <h1>Evo. 3---------------------------------</h1>
-                    <h1>Evo. 3</h1>
-                    <h1>Evo. 3</h1>
-                    <h1>Evo. 3</h1>
-                    <h1>Evo. 3</h1>
-                    <h1>Evo. 3</h1>
-                    <h1>Evo. 3</h1>
-                    <h1>Evo. 3</h1> */}
+                <div className="pokemonPageEvolutionChain d-flex align-items-center">
                     <Card pokemon={pokemon} />
                     <Card pokemon={nextPokemonEvolution} />
-                    {/* <Card pokemon={nextEvo} /> */}
-
                 </div>
             </div>
         </React.Fragment>

@@ -5,8 +5,9 @@ import PokemonPage from "./components/PokemonPage"
 import React, { useEffect, useState } from "react";
 import { pokemon } from "./App";
 
+
 export default props =>
     <Switch>
         <Route exact path='/' component={IndexPage} />
-        <Route path='' component={PokemonPage} />
+        <Route path='' component={props => <PokemonPage />} />
     </Switch>
