@@ -6,30 +6,6 @@ const Card = (props) => {
 
     const pokemon = props.pokemon
 
-    // if (pokemon.types?.[0]?.type?.name == 'fire') {
-    //     console.log('legal')
-    //     return (<div className="pokemon bg-danger">
-    //         <div className="image-container">
-    //             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-    //         </div>
-    //         <div className="info">
-    //             <span className="number">
-    //                 #{pokemon.id}
-    //             </span>
-    //             <h3 className="name">
-    //                 {pokemon.name}
-    //             </h3>
-    //             <ul>
-    //                 {pokemon.types.map(data => (
-    //                     <li className="type" key={pokemon.id}>
-    //                         Type: <span>{data.type.name}</span>
-    //                     </li>
-    //                 ))}
-    //             </ul>
-    //         </div>
-    //     </div>)
-    // }
-
     let typeColor = ''
 
     if (pokemon.types?.[0]?.type?.name == 'fire') {
@@ -60,6 +36,10 @@ const Card = (props) => {
         typeColor = 'psychic'
     } else if(pokemon.types?.[0]?.type?.name == 'water') {
         typeColor = 'water'
+    }
+
+    const refreshPage = () => {
+        window.location.reload()
     }
 
     if (pokemon.name) {

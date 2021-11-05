@@ -6,6 +6,7 @@
 
 #root {
   width: 100%;
+  
 }
 
 html {
@@ -20,8 +21,13 @@ body {
   font-family: 'Lato', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   margin: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -38,6 +44,12 @@ h1 {
   margin: 0 auto;
   max-width: 1200px;
   height: fit-content;
+}
+
+.App {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 .pokemon {

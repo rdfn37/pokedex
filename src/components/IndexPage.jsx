@@ -25,7 +25,7 @@ const IndexPage = () => {
     return (
       <div className="App">
         <h1>Pokedex</h1>
-        <input className="rounded" id="input" type="text" placeholder="Pesquisar..." onChange={e => setPokemonName(e.target.value.toLowerCase())} />
+        <input className="rounded m-2" id="input" type="text" placeholder="Pesquisar..." onChange={e => setPokemonName(e.target.value.toLowerCase())} />
         <button className='mx-3 rounded btn-primary' onClick={e => searchPokemon(pokemonName)}> Enviar </button>
         <div className="poke-container" id="poke-container">
             <Card pokemon={pokemon} />

@@ -1,14 +1,14 @@
 .pokemonPageMain  {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 10vh 40vh 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 
     'pokemonPageImg pokemonPageInfo evolution'
     'pokemonPageStats pokemonPageStats evolution';
-    margin-left: 0;
     width: fit-content;
     margin-left: 20px;
     align-content: center;
+    align-self: flex-start;
 }
 
 .pokemonPageImg {
@@ -22,6 +22,10 @@
 .pokemonPageStats {
     padding-top: 10px;
     grid-area: pokemonPageStats;
+}
+
+.pokemonPageEvolutionChain {
+  grid-area: evolution;
 }
 
 .App {
