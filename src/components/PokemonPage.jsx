@@ -10,21 +10,8 @@ const CardPage = (props) => {
 
     const [pokemonName, setPokemonName] = useState(window.location.pathname.substring(1))
 
-    const [pokemonSpecies, setPokemonSpecies] = useState({})
+    const [pokemonEvolutions, setPokemonEvolutions] = useState([])
 
-    const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState({})
-
-    const [nextPokemonEvolution, setNextPokemonEvolution] = useState({})
-
-    const [nextPokemonEvolutionName, setNextPokemonEvolutionName] = useState('')
-
-    const getNextPokemonEvolutionName = () => {
-        setNextPokemonEvolutionName(pokemonEvolutionChain?.chain?.evolves_to?.[0]?.species?.name)
-    }
-
-    useEffect(() => {
-        getNextPokemonEvolutionName()
-    }, [])
 
     const getPokemon = () => {
         if (pokemonName) {
@@ -35,38 +22,47 @@ const CardPage = (props) => {
         }
     }
 
-    useEffect(() => {
-        getPokemon()
-    }, [])
-
-    const getPokemonSpecies = () => {
+    const getPokemonEvolutions = () => {
+        let pokemonEvolutions = []
         if (pokemonName) {
             axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`)
                 .then(e => {
-                    setPokemonSpecies(e.data)
-                    axios.get(e.data?.evolution_chain?.url)
+                    console.log(e.data.evolution_chain.url)
+                    axios.get(`${e.data.evolution_chain.url}`)
                         .then(e => {
-                            setPokemonEvolutionChain(e.data)
-                            axios.get(e.data?.chain?.evolves_to?.[0]?.species?.url.replace('-species', ''))
+                            axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.species.name}`)
                                 .then(e => {
-                                    setNextPokemonEvolution(e.data)
+                                    pokemonEvolutions = [...pokemonEvolutions, e.data]
+                                    console.log(pokemonEvolutions)
+                                    setPokemonEvolutions(pokemonEvolutions)
                                 })
+                            if (e.data.chain.evolves_to) {
+                                axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[0].species.name}`)
+                                    .then(e => {
+                                        pokemonEvolutions = [...pokemonEvolutions, e.data]
+                                        setPokemonEvolutions(pokemonEvolutions)
+                                    })
+                            }
+
+                            if (e.data.chain.evolves_to[0].evolves_to) {
+                                axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[0].evolves_to[0]?.species?.name}`)
+                                    .then(e => {
+                                        pokemonEvolutions = [...pokemonEvolutions, e.data]
+                                        setPokemonEvolutions(pokemonEvolutions)
+                                    })
+                            }
                         })
                 })
         }
     }
 
     useEffect(() => {
-        getPokemonSpecies()
+        getPokemonEvolutions()
     }, [])
 
-    console.log(nextPokemonEvolution)
-
-    console.log(nextPokemonEvolutionName)
-
-
-    console.log(pokemonEvolutionChain?.chain?.evolves_to?.[0].species?.name)
-
+    useEffect(() => {
+        getPokemon()
+    }, [])
 
     let typeColor = 'o'
     if (pokemon.types?.[0]?.type?.name == 'fire') {
@@ -176,8 +172,9 @@ const CardPage = (props) => {
                     </table>
                 </div>
                 <div className="pokemonPageEvolutionChain d-flex align-items-center">
-                    <Card pokemon={pokemon} />
-                    <Card pokemon={nextPokemonEvolution} />
+                    <Card pokemon={pokemonEvolutions[0]} />
+                    <Card pokemon={pokemonEvolutions[1]} />
+                    <Card pokemon={pokemonEvolutions[2]} />
                 </div>
             </div>
         </React.Fragment>

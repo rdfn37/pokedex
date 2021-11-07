@@ -8,41 +8,41 @@ const Card = (props) => {
 
     let typeColor = ''
 
-    if (pokemon.types?.[0]?.type?.name == 'fire') {
+    if (pokemon?.types?.[0]?.type?.name == 'fire') {
         typeColor = 'fire'
-    } else if(pokemon.types?.[0]?.type?.name == 'bug') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'bug') {
         typeColor = 'bug'
-    } else if(pokemon.types?.[0]?.type?.name == 'dragon') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'dragon') {
         typeColor = 'dragon'
-    } else if(pokemon.types?.[0]?.type?.name == 'electric') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'electric') {
         typeColor = 'electric'
-    } else if(pokemon.types?.[0]?.type?.name == 'fighting') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'fighting') {
         typeColor = 'fighting'
-    } else if(pokemon.types?.[0]?.type?.name == 'flying') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'flying') {
         typeColor = 'flying'
-    } else if(pokemon.types?.[0]?.type?.name == 'ghost') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'ghost') {
         typeColor = 'ghost'
-    } else if(pokemon.types?.[0]?.type?.name == 'grass') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'grass') {
         typeColor = 'grass'
-    } else if(pokemon.types?.[0]?.type?.name == 'ground') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'ground') {
         typeColor = 'ground'
-    } else if(pokemon.types?.[0]?.type?.name == 'rock') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'rock') {
         typeColor = 'rock'
-    } else if(pokemon.types?.[0]?.type?.name == 'ice') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'ice') {
         typeColor = 'ice'
-    } else if(pokemon.types?.[0]?.type?.name == 'poison') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'poison') {
         typeColor = 'poison'
-    } else if(pokemon.types?.[0]?.type?.name == 'psychic') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'psychic') {
         typeColor = 'psychic'
-    } else if(pokemon.types?.[0]?.type?.name == 'water') {
+    } else if(pokemon?.types?.[0]?.type?.name == 'water') {
         typeColor = 'water'
     }
 
     const refreshPage = () => {
-        window.location.replace(pokemon.name)
+        window.location.replace(pokemon?.name)
     }
 
-    if (pokemon.name) {
+    if (pokemon?.name) {
         return (
             <Link onClick={refreshPage} id='link' to={pokemon.name} key={pokemon.id}>
                 <div className={`pokemon ${typeColor}`}>
