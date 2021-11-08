@@ -4,6 +4,7 @@ import Card from "./Card";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/PokemonPage.css'
+import { render } from "react-dom";
 
 const CardPage = (props) => {
     const [pokemon, setPokemon] = useState({})
@@ -37,11 +38,19 @@ const CardPage = (props) => {
                                     setPokemonEvolutions(pokemonEvolutions)
                                 })
                             if (e.data.chain.evolves_to) {
-                                axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[0].species.name}`)
-                                    .then(e => {
-                                        pokemonEvolutions = [...pokemonEvolutions, e.data]
-                                        setPokemonEvolutions(pokemonEvolutions)
-                                    })
+                                const evolutionsArray = e.data.chain.evolves_to
+                                console.log(evolutionsArray)
+                                
+                                for (let i = 0; i < evolutionsArray.length; i++) {
+                                    axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[i].species.name}`)
+                                        .then(e => {
+                                            pokemonEvolutions = [...pokemonEvolutions, e.data]
+                                            console.log(pokemonEvolutions)
+                                            setPokemonEvolutions(pokemonEvolutions)
+                                        })
+                                    
+                                }
+
                             }
 
                             if (e.data.chain.evolves_to[0].evolves_to) {
@@ -63,6 +72,12 @@ const CardPage = (props) => {
     useEffect(() => {
         getPokemon()
     }, [])
+
+
+    const evolutions = pokemonEvolutions.map(evolution => {
+        return <Card pokemon={evolution} />
+    })
+
 
     let typeColor = 'o'
     if (pokemon.types?.[0]?.type?.name == 'fire') {
@@ -104,7 +119,7 @@ const CardPage = (props) => {
 
             <div className={`pokemonPageMain my-1 rounded p-1 ${typeColor}`}>
 
-                <div className={`d-flex align-items-start justify-content-center pokemonPageImg ${pokemonName}-img mx-5`}>
+                <div className={`d-flex align-self-start justify-content-start pokemonPageImg ${pokemonName}-img me-5`}>
                     <img className='' src={pokemon.sprites?.front_default} alt={pokemonName} />
                 </div>
 
@@ -171,10 +186,8 @@ const CardPage = (props) => {
                         </tr>
                     </table>
                 </div>
-                <div className="pokemonPageEvolutionChain d-flex align-items-center">
-                    <Card pokemon={pokemonEvolutions[0]} />
-                    <Card pokemon={pokemonEvolutions[1]} />
-                    <Card pokemon={pokemonEvolutions[2]} />
+                <div className="pokemonPageEvolutionChain align-items-center">
+                    {evolutions}
                 </div>
             </div>
         </React.Fragment>

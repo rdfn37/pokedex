@@ -9,14 +9,19 @@
     margin-left: 20px;
     align-content: center;
     align-self: flex-start;
+    width: 1fr;
+    height: min-content;
 }
 
 .pokemonPageImg {
     grid-area: pokemonPageImg;
+    height: min-content;
+    width: min-content;
 }
 
 .pokemonPageInfo {
     grid-area: pokemonPageInfo;
+    height: min-content;
 }
 
 .pokemonPageStats {
@@ -26,6 +31,12 @@
 
 .pokemonPageEvolutionChain {
   grid-area: evolution;
+  display: grid;
+  align-self: flex-start;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: min-content;
+  height: min-content;
+  width: min-content;
 }
 
 .App {

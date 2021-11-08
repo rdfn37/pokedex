@@ -54,7 +54,7 @@ const Card = (props) => {
                             #{pokemon.id}
                         </span>
                         <h3 className="name">
-                            {pokemon.name}
+                            {pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}
                         </h3>
                         <ul>
                             {pokemon.types.map(data => (

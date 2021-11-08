@@ -59,6 +59,8 @@ h1 {
   margin: 10px;
   padding: 20px;
   text-align: center;
+  height: max-content;
+  width: max-content;
 }
 
 .pokemon .img-container {
