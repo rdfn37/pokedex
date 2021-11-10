@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/PokemonPage.css'
 import { render } from "react-dom";
 import { Link } from 'react-router-dom'
+import Logo from '../imgs/logo.svg.png'
 
 
 const CardPage = (props) => {
@@ -129,7 +130,7 @@ const CardPage = (props) => {
         <React.Fragment>
             <header className='d-inline-flex pokemonPageHeader text-center justify-content-center'>
                 <Link to='/'>
-                    <img className='' id='logo' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1026px-Pok%C3%A9_Ball_icon.svg.png" alt="Logo" />
+                    <img className='' id='logo' src={Logo} alt="Logo" />
                 </Link>
                 <h1 className=''>{pokemonName[0].toUpperCase() + pokemonName.substring(1)}</h1>
             </header>
