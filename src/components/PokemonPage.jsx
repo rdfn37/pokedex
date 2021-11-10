@@ -33,24 +33,20 @@ const CardPage = (props) => {
         if (pokemonName) {
             axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`)
                 .then(e => {
-                    console.log(e.data.evolution_chain.url)
                     axios.get(`${e.data.evolution_chain.url}`)
                         .then(e => {
                             axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.species.name}`)
                                 .then(e => {
                                     pokemonEvolutions = [...pokemonEvolutions, e.data]
-                                    console.log(pokemonEvolutions)
                                     setPokemonEvolutions(pokemonEvolutions)
                                 })
                             if (e.data.chain.evolves_to) {
                                 const evolutionsArray = e.data.chain.evolves_to
-                                console.log(evolutionsArray)
 
                                 for (let i = 0; i < evolutionsArray.length; i++) {
                                     axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[i].species.name}`)
                                         .then(e => {
                                             pokemonEvolutions = [...pokemonEvolutions, e.data]
-                                            console.log(pokemonEvolutions)
                                             setPokemonEvolutions(pokemonEvolutions)
                                         })
 
@@ -78,9 +74,14 @@ const CardPage = (props) => {
         getPokemon()
     }, [])
 
+    pokemonEvolutions.sort(function(a, b) {return a.id - b.id})
 
     const evolutions = pokemonEvolutions.map(evolution => {
-        return <Card pokemon={evolution} />
+        return(
+            <Link id='link' onClick={() => {window.location.replace(evolution.name)}} to={evolution.name} key={evolution.id}>
+                <Card pokemon={evolution} />
+            </Link>
+        ) 
     })
 
     const searchPokemon = newPokemon => {
@@ -202,6 +203,12 @@ const CardPage = (props) => {
                         <tr className="table table-danger">
                             <td className="text-light table table-danger">
                                 Speed - {pokemon.stats?.[5]?.base_stat}
+                            </td>
+                        </tr>
+
+                        <tr className='table table-danger'>
+                            <td className='text-light table table-danger'>
+                                Total - {pokemon.stats?.[0]?.base_stat + pokemon.stats?.[1]?.base_stat + pokemon.stats?.[2]?.base_stat + pokemon.stats?.[3]?.base_stat + pokemon.stats?.[4]?.base_stat + pokemon.stats?.[5]?.base_stat}
                             </td>
                         </tr>
                     </table>

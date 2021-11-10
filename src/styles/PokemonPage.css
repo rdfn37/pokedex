@@ -13,6 +13,11 @@
     height: min-content;
 }
 
+#link {
+  text-decoration: none;
+  color: black;
+}
+
 .pokemonPageImg {
     grid-area: pokemonPageImg;
     height: min-content;
