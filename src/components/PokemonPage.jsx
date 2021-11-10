@@ -5,6 +5,8 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/PokemonPage.css'
 import { render } from "react-dom";
+import { Link } from 'react-router-dom'
+
 
 const CardPage = (props) => {
     const [pokemon, setPokemon] = useState({})
@@ -12,6 +14,8 @@ const CardPage = (props) => {
     const [pokemonName, setPokemonName] = useState(window.location.pathname.substring(1))
 
     const [pokemonEvolutions, setPokemonEvolutions] = useState([])
+
+    const [newPokemon, setNewPokemon] = useState('')
 
 
     const getPokemon = () => {
@@ -40,7 +44,7 @@ const CardPage = (props) => {
                             if (e.data.chain.evolves_to) {
                                 const evolutionsArray = e.data.chain.evolves_to
                                 console.log(evolutionsArray)
-                                
+
                                 for (let i = 0; i < evolutionsArray.length; i++) {
                                     axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[i].species.name}`)
                                         .then(e => {
@@ -48,7 +52,7 @@ const CardPage = (props) => {
                                             console.log(pokemonEvolutions)
                                             setPokemonEvolutions(pokemonEvolutions)
                                         })
-                                    
+
                                 }
 
                             }
@@ -78,6 +82,16 @@ const CardPage = (props) => {
         return <Card pokemon={evolution} />
     })
 
+    const searchPokemon = newPokemon => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${newPokemon}`)
+            .then(e => {
+                window.location.pathname = e.data.name
+            })
+            .catch(e => {
+                alert('Pokemon não existente')
+            })
+
+    }
 
     let typeColor = 'o'
     if (pokemon.types?.[0]?.type?.name == 'fire') {
@@ -113,9 +127,14 @@ const CardPage = (props) => {
 
     return (
         <React.Fragment>
-            <header className='pokemonPageHeader text-center'>
-                <h1>{pokemonName[0].toUpperCase() + pokemonName.substring(1)}</h1>
+            <header className='d-inline-flex pokemonPageHeader text-center justify-content-center'>
+                <Link to='/'>
+                    <img className='' id='logo' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1026px-Pok%C3%A9_Ball_icon.svg.png" alt="Logo" />
+                </Link>
+                <h1 className=''>{pokemonName[0].toUpperCase() + pokemonName.substring(1)}</h1>
             </header>
+            <input className="rounded m-2" id="input" type="text" placeholder="Pesquisar..." onChange={e => setNewPokemon(e.target.value.toLowerCase())} />
+            <button className='mx-3 rounded btn-primary' onClick={e => searchPokemon(newPokemon)}> Enviar </button>
 
             <div className={`pokemonPageMain my-1 rounded p-1 ${typeColor}`}>
 

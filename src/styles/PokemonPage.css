@@ -43,6 +43,14 @@
     height: fit-content;
 }
 
+#logo {
+  height: 50px;
+}
+
+.pokemonPageHeader {
+  width: 100%;
+}
+
 .bug {
     background-color: greenyellow;
   }
