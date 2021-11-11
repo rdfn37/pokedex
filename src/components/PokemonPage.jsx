@@ -49,18 +49,33 @@ const CardPage = (props) => {
                                             pokemonEvolutions = [...pokemonEvolutions, e.data]
                                             setPokemonEvolutions(pokemonEvolutions)
                                         })
+                                    //////////////////////////////////////////////////////////
+                                    if (e.data.chain.evolves_to[i].evolves_to) {
+                                        const evolutionsArray = e.data.chain.evolves_to[i].evolves_to
 
+                                        for (let ii = 0; ii < evolutionsArray.length; ii++) {
+                                            axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[i].evolves_to[ii]?.species?.name}`)
+                                                .then(e => {
+                                                    pokemonEvolutions = [...pokemonEvolutions, e.data]
+                                                    setPokemonEvolutions(pokemonEvolutions)
+                                                })
+                                        }
+                                    }
+                                }
+                            }
+
+                            /*if (e.data.chain.evolves_to[0].evolves_to) {
+                                const evolutionsArray = e.data.chain.evolves_to[0].evolves_to
+
+                                for (let i = 0; i < evolutionsArray.length; i++) {
+                                    axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[0].evolves_to[i]?.species?.name}`)
+                                        .then(e => {
+                                            pokemonEvolutions = [...pokemonEvolutions, e.data]
+                                            setPokemonEvolutions(pokemonEvolutions)
+                                        })
                                 }
 
-                            }
-
-                            if (e.data.chain.evolves_to[0].evolves_to) {
-                                axios.get(`https://pokeapi.co/api/v2/pokemon/${e.data.chain.evolves_to[0].evolves_to[0]?.species?.name}`)
-                                    .then(e => {
-                                        pokemonEvolutions = [...pokemonEvolutions, e.data]
-                                        setPokemonEvolutions(pokemonEvolutions)
-                                    })
-                            }
+                            }*/
                         })
                 })
         }
@@ -74,14 +89,14 @@ const CardPage = (props) => {
         getPokemon()
     }, [])
 
-    pokemonEvolutions.sort(function(a, b) {return a.id - b.id})
+    pokemonEvolutions.sort(function (a, b) { return a.id - b.id })
 
     const evolutions = pokemonEvolutions.map(evolution => {
-        return(
-            <Link id='link' onClick={() => {window.location.replace(evolution.name)}} to={evolution.name} key={evolution.id}>
+        return (
+            <Link id='link' onClick={() => { window.location.replace(evolution.name) }} to={evolution.name} key={evolution.id}>
                 <Card pokemon={evolution} />
             </Link>
-        ) 
+        )
     })
 
     const searchPokemon = newPokemon => {
